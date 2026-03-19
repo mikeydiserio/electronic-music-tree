@@ -35,6 +35,10 @@ function getYouTubeId(url: string): string | null {
   return match ? match[1] : null;
 }
 
+function getWikiUrl(name: string): string {
+  return `https://en.wikipedia.org/wiki/${encodeURIComponent(name.replace(/ /g, "_"))}`;
+}
+
 interface GenreInfoSidebarProps {
   genre: Genre | null;
   onClose: () => void;
@@ -98,7 +102,14 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
             <div className="space-y-1.5">
               {genre.artists.map((a) => (
                 <div key={a.name} className="flex items-baseline gap-2">
-                  <span className={`text-sm font-medium ${textColor}`}>{a.name}</span>
+                  <a
+                    href={a.wikiUrl || getWikiUrl(a.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-sm font-medium ${textColor} underline hover:opacity-80 transition-opacity`}
+                  >
+                    {a.name}
+                  </a>
                   {a.note && <span className="text-xs text-muted-foreground">— {a.note}</span>}
                 </div>
               ))}
@@ -135,10 +146,11 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
                         <div className="relative w-full rounded overflow-hidden" style={{ paddingBottom: "56.25%" }}>
                           <iframe
                             className="absolute inset-0 w-full h-full"
-                            src={`https://www.youtube.com/embed/${videoId}`}
+                            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
                             title={`${t.title} - ${t.artist}`}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
+                            referrerPolicy="no-referrer"
                           />
                         </div>
                       </div>
