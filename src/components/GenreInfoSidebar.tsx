@@ -146,10 +146,11 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
                         <div className="relative w-full rounded overflow-hidden" style={{ paddingBottom: "56.25%" }}>
                           <iframe
                             className="absolute inset-0 w-full h-full"
-                            src={`https://www.youtube.com/embed/${videoId}`}
+                            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
                             title={`${t.title} - ${t.artist}`}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
+                            referrerPolicy="no-referrer"
                           />
                         </div>
                       </div>
