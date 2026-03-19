@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Genre, genres } from "@/data/genreData";
-import { X, Music, Users, Disc3, ExternalLink } from "lucide-react";
+import { X, Music, Users, Disc3, ChevronDown } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const colorMap: Record<string, string> = {
@@ -29,6 +30,11 @@ const bgMap: Record<string, string> = {
   yellow: "bg-neon-yellow/5",
 };
 
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : null;
+}
+
 interface GenreInfoSidebarProps {
   genre: Genre | null;
   onClose: () => void;
@@ -36,6 +42,8 @@ interface GenreInfoSidebarProps {
 }
 
 export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSidebarProps) {
+  const [expandedTrack, setExpandedTrack] = useState<string | null>(null);
+
   if (!genre) return null;
 
   const textColor = colorMap[genre.color];
@@ -43,6 +51,10 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
   const bgColor = bgMap[genre.color];
   const parentGenres = genres.filter((g) => genre.parents.includes(g.id));
   const childGenres = genres.filter((g) => g.parents.includes(genre.id));
+
+  const toggleTrack = (key: string) => {
+    setExpandedTrack((prev) => (prev === key ? null : key));
+  };
 
   return (
     <div className="w-[380px] min-w-[380px] border-l border-border bg-card flex flex-col h-full animate-in slide-in-from-right-5 duration-300">
@@ -99,27 +111,41 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
               <Disc3 className="w-3.5 h-3.5" /> Essential Tracks
             </h3>
             <div className="space-y-2">
-              {genre.tracks.map((t) => (
-                <div key={t.title} className={`p-2.5 rounded-md border ${borderColor} ${bgColor}`}>
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <div className={`text-sm font-medium ${textColor}`}>{t.title}</div>
-                      <div className="text-xs text-muted-foreground">{t.artist} · {t.year}</div>
-                    </div>
-                    {t.youtubeUrl && (
-                      <a
-                        href={t.youtubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`shrink-0 mt-0.5 p-1 rounded hover:bg-muted/50 transition-colors ${textColor}`}
-                        title="Listen on YouTube"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
+              {genre.tracks.map((t) => {
+                const trackKey = `${t.artist}-${t.title}`;
+                const isExpanded = expandedTrack === trackKey;
+                const videoId = t.youtubeUrl ? getYouTubeId(t.youtubeUrl) : null;
+
+                return (
+                  <div key={trackKey} className={`rounded-md border ${borderColor} ${bgColor} overflow-hidden`}>
+                    <button
+                      onClick={() => videoId && toggleTrack(trackKey)}
+                      className={`w-full p-2.5 flex items-center justify-between gap-2 text-left ${videoId ? "cursor-pointer hover:bg-muted/30" : "cursor-default"} transition-colors`}
+                    >
+                      <div>
+                        <div className={`text-sm font-medium ${textColor}`}>{t.title}</div>
+                        <div className="text-xs text-muted-foreground">{t.artist} · {t.year}</div>
+                      </div>
+                      {videoId && (
+                        <ChevronDown className={`w-4 h-4 shrink-0 text-muted-foreground transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+                      )}
+                    </button>
+                    {isExpanded && videoId && (
+                      <div className="px-2.5 pb-2.5">
+                        <div className="relative w-full rounded overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+                          <iframe
+                            className="absolute inset-0 w-full h-full"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title={`${t.title} - ${t.artist}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
                     )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
