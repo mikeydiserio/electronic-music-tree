@@ -4,7 +4,7 @@ import { GenreTree } from "@/components/GenreTree";
 import { GenreInfoSidebar } from "@/components/GenreInfoSidebar";
 import { ShaderBackground } from "@/components/ShaderBackground";
 import { SplashScreen } from "@/components/SplashScreen";
-import { Zap } from "lucide-react";
+import { MusicClef } from "@/components/MusicClef";
 
 const Index = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
