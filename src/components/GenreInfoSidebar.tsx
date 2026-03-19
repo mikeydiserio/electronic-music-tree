@@ -1,5 +1,5 @@
 import { Genre, genres } from "@/data/genreData";
-import { X, Music, Users, Disc3 } from "lucide-react";
+import { X, Music, Users, Disc3, ExternalLink } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const colorMap: Record<string, string> = {
