@@ -35,6 +35,10 @@ function getYouTubeId(url: string): string | null {
   return match ? match[1] : null;
 }
 
+function getWikiUrl(name: string): string {
+  return `https://en.wikipedia.org/wiki/${encodeURIComponent(name.replace(/ /g, "_"))}`;
+}
+
 interface GenreInfoSidebarProps {
   genre: Genre | null;
   onClose: () => void;
