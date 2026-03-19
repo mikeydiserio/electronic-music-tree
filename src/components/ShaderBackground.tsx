@@ -96,7 +96,7 @@ void main() {
 `;
 
 function ShaderPlane() {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const matRef = useRef<THREE.ShaderMaterial>(null);
   const uniforms = useMemo(
     () => ({
       iTime: { value: 0 },
@@ -106,20 +106,31 @@ function ShaderPlane() {
   );
 
   useFrame(({ clock, size }) => {
-    uniforms.iTime.value = clock.getElapsedTime();
-    uniforms.iResolution.value.set(size.width * window.devicePixelRatio, size.height * window.devicePixelRatio);
+    if (matRef.current) {
+      matRef.current.uniforms.iTime.value = clock.getElapsedTime();
+      matRef.current.uniforms.iResolution.value.set(
+        size.width * window.devicePixelRatio,
+        size.height * window.devicePixelRatio
+      );
+    }
   });
 
+  const material = useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms,
+        depthWrite: false,
+        depthTest: false,
+      }),
+    [uniforms]
+  );
+
   return (
-    <mesh ref={meshRef}>
+    <mesh>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={uniforms}
-        depthWrite={false}
-        depthTest={false}
-      />
+      <primitive object={material} ref={matRef} attach="material" />
     </mesh>
   );
 }
