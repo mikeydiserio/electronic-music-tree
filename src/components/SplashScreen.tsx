@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Zap } from "lucide-react";
+import { MusicClef } from "@/components/MusicClef";
 
 interface SplashScreenProps {
   onComplete: () => void;
