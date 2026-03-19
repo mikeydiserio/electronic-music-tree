@@ -33,7 +33,7 @@ const Index = () => {
         <div className="flex items-center gap-2.5">
           <MusicClef size={20} className="text-primary" />
           <h1 className="text-lg font-bold text-foreground">
-            Mikey D's <span className="text-primary">Encyclopedia</span>
+            Mikey D's <span className="text-primary">Encyclopedia De Musique</span>
           </h1>
         </div>
         <p className="text-xs text-muted-foreground font-mono hidden sm:block">

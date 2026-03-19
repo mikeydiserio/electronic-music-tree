@@ -58,8 +58,8 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
             : "opacity-100 translate-y-0"
         }`}
       >
-        <span className="text-primary text-glow-cyan">Electronic Music</span>{" "}
-        <span className="text-secondary text-glow-magenta">Encyclopedia</span>
+        <span className="text-primary text-glow-cyan">Encyclopedia</span>{" "}
+        <span className="text-secondary text-glow-magenta">De Musique</span>
       </h2>
 
       {/* Subtitle */}
