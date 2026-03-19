@@ -4,7 +4,7 @@ import { GenreTree } from "@/components/GenreTree";
 import { GenreInfoSidebar } from "@/components/GenreInfoSidebar";
 import { ShaderBackground } from "@/components/ShaderBackground";
 import { SplashScreen } from "@/components/SplashScreen";
-import { Zap } from "lucide-react";
+import { MusicClef } from "@/components/MusicClef";
 
 const Index = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -31,7 +31,7 @@ const Index = () => {
         }`}
       >
         <div className="flex items-center gap-2.5">
-          <Zap className="w-5 h-5 text-primary" />
+          <MusicClef size={20} className="text-primary" />
           <h1 className="text-lg font-bold text-foreground">
             Mikey D's <span className="text-primary">Encyclopedia</span>
           </h1>

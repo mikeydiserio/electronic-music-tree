@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Zap } from "lucide-react";
+import { MusicClef } from "@/components/MusicClef";
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -34,9 +34,9 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
         }`}
       >
         <div className="relative">
-          <Zap className="w-16 h-16 text-primary drop-shadow-[0_0_24px_hsl(var(--primary)/0.8)]" />
+          <MusicClef size={64} className="text-primary drop-shadow-[0_0_24px_hsl(var(--primary)/0.8)]" />
           <div className="absolute inset-0 animate-ping">
-            <Zap className="w-16 h-16 text-primary/30" />
+            <MusicClef size={64} className="text-primary/30" />
           </div>
         </div>
       </div>
