@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { genres } from "@/data/genreData";
 import { GenreTree } from "@/components/GenreTree";
 import { GenreInfoSidebar } from "@/components/GenreInfoSidebar";
+import { ShaderBackground } from "@/components/ShaderBackground";
 import { Zap } from "lucide-react";
 
 const Index = () => {
@@ -15,7 +16,8 @@ const Index = () => {
   const handleClose = useCallback(() => setSelectedId(null), []);
 
   return (
-    <div className="h-screen flex flex-col bg-background overflow-hidden">
+    <div className="h-screen flex flex-col bg-background/80 overflow-hidden relative">
+      <ShaderBackground />
       {/* Header */}
       <header className="border-b border-border px-6 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2.5">
