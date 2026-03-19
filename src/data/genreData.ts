@@ -7,7 +7,7 @@ export interface Genre {
   parents: string[];
   description: string;
   characteristics: string[];
-  artists: { name: string; note?: string }[];
+  artists: { name: string; note?: string; wikiUrl?: string }[];
   tracks: { title: string; artist: string; year: number; youtubeUrl?: string }[];
 }
 
