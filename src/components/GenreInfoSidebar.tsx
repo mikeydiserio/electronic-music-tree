@@ -1,5 +1,5 @@
 import { Genre, genres } from "@/data/genreData";
-import { X, Music, Users, Disc3 } from "lucide-react";
+import { X, Music, Users, Disc3, ExternalLink } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const colorMap: Record<string, string> = {
@@ -101,8 +101,23 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
             <div className="space-y-2">
               {genre.tracks.map((t) => (
                 <div key={t.title} className={`p-2.5 rounded-md border ${borderColor} ${bgColor}`}>
-                  <div className={`text-sm font-medium ${textColor}`}>{t.title}</div>
-                  <div className="text-xs text-muted-foreground">{t.artist} · {t.year}</div>
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className={`text-sm font-medium ${textColor}`}>{t.title}</div>
+                      <div className="text-xs text-muted-foreground">{t.artist} · {t.year}</div>
+                    </div>
+                    {t.youtubeUrl && (
+                      <a
+                        href={t.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`shrink-0 mt-0.5 p-1 rounded hover:bg-muted/50 transition-colors ${textColor}`}
+                        title="Listen on YouTube"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
