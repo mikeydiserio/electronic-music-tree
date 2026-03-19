@@ -102,7 +102,14 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
             <div className="space-y-1.5">
               {genre.artists.map((a) => (
                 <div key={a.name} className="flex items-baseline gap-2">
-                  <span className={`text-sm font-medium ${textColor}`}>{a.name}</span>
+                  <a
+                    href={a.wikiUrl || getWikiUrl(a.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-sm font-medium ${textColor} underline hover:opacity-80 transition-opacity`}
+                  >
+                    {a.name}
+                  </a>
                   {a.note && <span className="text-xs text-muted-foreground">— {a.note}</span>}
                 </div>
               ))}
