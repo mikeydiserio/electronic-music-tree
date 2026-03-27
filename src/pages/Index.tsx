@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { Search } from "lucide-react";
 import { genres } from "@/data/genreData";
 import { GenreTree } from "@/components/GenreTree";
 import { GenreInfoSidebar } from "@/components/GenreInfoSidebar";
