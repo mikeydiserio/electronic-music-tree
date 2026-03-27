@@ -5,6 +5,7 @@ import { GenreNode } from "./GenreNode";
 interface GenreTreeProps {
   selectedId: string | null;
   onSelect: (id: string) => void;
+  searchQuery: string;
 }
 
 // Positions for each genre within its decade column
