@@ -56,7 +56,7 @@ const Index = () => {
           showSplash ? "opacity-0" : "opacity-100"
         }`}
       >
-        <GenreTree selectedId={selectedId} onSelect={handleSelect} />
+        <GenreTree selectedId={selectedId} onSelect={handleSelect} searchQuery={searchQuery} />
         <GenreInfoSidebar genre={selectedGenre} onClose={handleClose} onSelectGenre={handleSelect} />
       </div>
     </div>
