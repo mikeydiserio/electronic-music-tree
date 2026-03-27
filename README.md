@@ -130,3 +130,6 @@ The application uses a component-based architecture with clear separation of con
 - **Layout** – Tree visualization with responsive sidebar sidebar UI
 - **Effects** – Shader background runs independently for visual appeal
 
+## License
+
+Do what you feel like
