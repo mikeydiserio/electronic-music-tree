@@ -61,7 +61,13 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
   };
 
   return (
-    <div className="w-[380px] min-w-[380px] border-l border-border bg-card flex flex-col h-full animate-in slide-in-from-right-5 duration-300">
+    <>
+      {/* Mobile overlay backdrop */}
+      <div
+        className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 sm:hidden"
+        onClick={onClose}
+      />
+      <div className="fixed inset-x-0 bottom-0 z-50 max-h-[75vh] sm:relative sm:inset-auto sm:z-auto sm:max-h-none w-full sm:w-[380px] sm:min-w-[380px] border-t sm:border-t-0 sm:border-l border-border bg-card flex flex-col h-auto sm:h-full animate-in slide-in-from-bottom sm:slide-in-from-right-5 duration-300 rounded-t-2xl sm:rounded-none">
       {/* Header */}
       <div className={`p-5 border-b ${borderColor} ${bgColor}`}>
         <div className="flex items-start justify-between">
