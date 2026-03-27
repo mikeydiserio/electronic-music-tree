@@ -42,9 +42,15 @@ function useLayout() {
   }, []);
 }
 
-export function GenreTree({ selectedId, onSelect }: GenreTreeProps) {
+export function GenreTree({ selectedId, onSelect, searchQuery }: GenreTreeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { positions, decadeX, maxX, maxY } = useLayout();
+
+  const filteredGenreIds = useMemo(() => {
+    if (!searchQuery.trim()) return null; // null means show all
+    const q = searchQuery.toLowerCase();
+    return new Set(genres.filter(g => g.name.toLowerCase().includes(q)).map(g => g.id));
+  }, [searchQuery]);
 
   // Scroll selected node into view
   useEffect(() => {
