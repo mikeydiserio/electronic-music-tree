@@ -10,6 +10,7 @@ import { MusicClef } from "@/components/MusicClef";
 const Index = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showSplash, setShowSplash] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const selectedGenre = selectedId ? genres.find((g) => g.id === selectedId) ?? null : null;
 
   const handleSelect = useCallback((id: string) => {
