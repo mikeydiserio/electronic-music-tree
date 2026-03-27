@@ -68,8 +68,12 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
         onClick={onClose}
       />
       <div className="fixed inset-x-0 bottom-0 z-50 max-h-[75vh] sm:relative sm:inset-auto sm:z-auto sm:max-h-none w-full sm:w-[380px] sm:min-w-[380px] border-t sm:border-t-0 sm:border-l border-border bg-card flex flex-col h-auto sm:h-full animate-in slide-in-from-bottom sm:slide-in-from-right-5 duration-300 rounded-t-2xl sm:rounded-none">
+      {/* Mobile drag handle */}
+      <div className="flex justify-center py-2 sm:hidden">
+        <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
+      </div>
       {/* Header */}
-      <div className={`p-5 border-b ${borderColor} ${bgColor}`}>
+      <div className={`px-4 sm:p-5 pb-4 sm:pb-5 border-b ${borderColor} ${bgColor}`}>
         <div className="flex items-start justify-between">
           <div>
             <h2 className={`text-xl font-bold ${textColor}`}>{genre.name}</h2>
