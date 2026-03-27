@@ -67,7 +67,7 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
         className="fixed inset-0 bg-background/60 backdrop-blur-sm z-40 sm:hidden"
         onClick={onClose}
       />
-      <div className="fixed inset-x-0 bottom-0 z-50 max-h-[75vh] sm:relative sm:inset-auto sm:z-auto sm:max-h-none w-full sm:w-[380px] sm:min-w-[380px] border-t sm:border-t-0 sm:border-l border-border bg-card flex flex-col h-auto sm:h-full animate-in slide-in-from-bottom sm:slide-in-from-right-5 duration-300 rounded-t-2xl sm:rounded-none">
+      <div className="fixed inset-x-0 bottom-0 z-50 max-h-[80vh] sm:relative sm:inset-auto sm:z-auto sm:max-h-none w-full sm:w-[380px] sm:min-w-[380px] border-t sm:border-t-0 sm:border-l border-border bg-card flex flex-col overflow-hidden sm:h-full animate-in slide-in-from-bottom sm:slide-in-from-right-5 duration-300 rounded-t-2xl sm:rounded-none">
       {/* Mobile drag handle */}
       <div className="flex justify-center py-2 sm:hidden">
         <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
@@ -85,7 +85,7 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
         </div>
       </div>
 
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 overflow-auto">
         <div className="p-5 space-y-6">
           {/* Description */}
           <div>
