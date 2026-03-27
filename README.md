@@ -130,17 +130,3 @@ The application uses a component-based architecture with clear separation of con
 - **Layout** – Tree visualization with responsive sidebar sidebar UI
 - **Effects** – Shader background runs independently for visual appeal
 
-React Router manages page navigation, while TanStack React Query could be extended for server-state synchronization in future versions.
-
-## Future Enhancements
-
-- Expand genre database with more decades and genres
-- Add search and filter functionality
-- Implement audio playback for sample tracks
-- Create community contributions system
-- Add comparisons between genres
-- Mobile app version
-
-## License
-
-[Add your license here]
