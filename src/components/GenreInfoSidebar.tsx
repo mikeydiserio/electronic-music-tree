@@ -85,7 +85,7 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
         </div>
       </div>
 
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 overflow-auto">
         <div className="p-5 space-y-6">
           {/* Description */}
           <div>
