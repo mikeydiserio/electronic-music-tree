@@ -210,5 +210,6 @@ export function GenreInfoSidebar({ genre, onClose, onSelectGenre }: GenreInfoSid
         </div>
       </ScrollArea>
     </div>
+    </>
   );
 }
