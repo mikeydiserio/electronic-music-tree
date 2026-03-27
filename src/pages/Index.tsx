@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { Search } from "lucide-react";
 import { genres } from "@/data/genreData";
 import { GenreTree } from "@/components/GenreTree";
 import { GenreInfoSidebar } from "@/components/GenreInfoSidebar";
@@ -9,6 +10,7 @@ import { MusicClef } from "@/components/MusicClef";
 const Index = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showSplash, setShowSplash] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const selectedGenre = selectedId ? genres.find((g) => g.id === selectedId) ?? null : null;
 
   const handleSelect = useCallback((id: string) => {
@@ -36,9 +38,16 @@ const Index = () => {
             Mikey D's <span className="text-primary">Encyclopedia De Musique</span>
           </h1>
         </div>
-        <p className="text-xs text-muted-foreground font-mono hidden sm:block">
-          1940s → Present · {genres.length} genres · Click a node to explore
-        </p>
+        <div className="relative hidden sm:block">
+          <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search genres…"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-muted/50 border border-border/50 rounded-md pl-8 pr-3 py-1.5 text-xs font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 w-48"
+          />
+        </div>
       </header>
 
       {/* Main content */}
@@ -47,7 +56,7 @@ const Index = () => {
           showSplash ? "opacity-0" : "opacity-100"
         }`}
       >
-        <GenreTree selectedId={selectedId} onSelect={handleSelect} />
+        <GenreTree selectedId={selectedId} onSelect={handleSelect} searchQuery={searchQuery} />
         <GenreInfoSidebar genre={selectedGenre} onClose={handleClose} onSelectGenre={handleSelect} />
       </div>
     </div>
