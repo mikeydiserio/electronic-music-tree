@@ -170,10 +170,11 @@ export function GenreTree({ selectedId, onSelect, searchQuery }: GenreTreeProps)
         {genres.map((g) => {
           const pos = positions[g.id];
           if (!pos) return null;
+          const isHidden = filteredGenreIds !== null && !filteredGenreIds.has(g.id);
           return (
             <div
               key={g.id}
-              className="absolute"
+              className={`absolute transition-opacity duration-300 ${isHidden ? 'opacity-10 pointer-events-none' : 'opacity-100'}`}
               style={{ left: pos.x, top: pos.y, zIndex: 1 }}
             >
               <GenreNode
